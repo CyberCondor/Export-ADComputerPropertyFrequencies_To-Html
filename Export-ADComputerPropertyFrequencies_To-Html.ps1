@@ -242,8 +242,8 @@ function main{
     Write-Host "This program will export all Active Directory COMPUTER property frequencies from 'AD Computers' to an HTML report.`n"
 
     $MainFolderPath   = "~\_FrequenyAnalysisReports"
-    if($Enabled -eq $true){$ReportFolderName = ("ADComputerPropertiesFrequenyAnalysisReport_EnabledComputersOnly_" + $(get-date -format yyy-MM-dd))}
-    else{                  $ReportFolderName = ("ADComputerPropertiesFrequenyAnalysisReport_" + $(get-date -format yyy-MM-dd))}
+    if($Enabled -eq $true){$ReportFolderName = ("ADComputerPropertiesFrequenyAnalysisReport$($Server)_EnabledComputersOnly_" + $(get-date -format yyy-MM-dd))}
+    else{                  $ReportFolderName = ("ADComputerPropertiesFrequenyAnalysisReport$($Server)_" + $(get-date -format yyy-MM-dd))}
     $ReportFolder     = New-Object -TypeName PSObject -Property @{Name=$ReportFolderName;Path="$MainFolderPath\$ReportFolderName"}
     $CurrDir          = (pwd).Path
     if((!(Test-Path Template.html)) -or (!((Get-Content Template.html | select -First 1).Contains("<!DOCTYPE HTML>")))){Write-Output "Cannot Find HTML Template File." ; break}
